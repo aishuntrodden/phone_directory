@@ -1,6 +1,5 @@
 ### QUICK DEV HINTS
-> Call testDbConnection from index.js to test the postgres database connection is successful or not.
-
+> During user login, the password should come to backend service already as hash , which for me testing will be difficult so I am sending normal password and converting to hash in my service.
 
 
 ### Coding Task

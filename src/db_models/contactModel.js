@@ -1,7 +1,7 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize'); 
 const db = require('../configuration/postgres_db').sequelize;
 
-const User = require('./user');
+const User = require('./userModel');
 const Contact = db.define('Contact', {
   name: {
     type: DataTypes.STRING,
@@ -10,6 +10,10 @@ const Contact = db.define('Contact', {
   phoneNumber: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate: {
+        isNumeric: true,
+        len: [10, 10]
+      },
   },
   userId: {
     type: DataTypes.INTEGER,
@@ -18,6 +22,10 @@ const Contact = db.define('Contact', {
       model: User,
       key: 'id',
     },
+  },
+  isSpam: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: null,
   },
 });
 
