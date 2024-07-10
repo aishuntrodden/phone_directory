@@ -1,3 +1,8 @@
+### QUICK DEV HINTS
+> Call testDbConnection from index.js to test the postgres database connection is successful or not.
+
+
+
 ### Coding Task
 
 Create a REST api to be consumed by a mobile app, which is somewhat similar to various popular apps

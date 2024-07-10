@@ -1,0 +1,24 @@
+{
+  "name": "phone_directory",
+  "version": "1.0.0",
+  "description": "Create a REST api to be consumed by a mobile app, which is somewhat similar to various popular apps\r which tell you if a number is spam, or allow you to find a person’s name by searching for their phone\r number.\r You can use any NodeJs framework to accomplish this task.\r For persistence you need to use a relational database along with an ORM for your framework. We will\r not evaluate NoSQL or raw SQL queries.\r Terminology and assumptions:\r ● Each registered user of the app can have zero or more personal “contacts”.\r ● The “global database” is basically the combination of all the registered users and their personal\r contacts (who may or may not be registered users).\r ● The UI will be built by someone else - you are simply making the REST API endpoints to be\r consumed by the front end.\r ● You will be writing the code as if it’s for production use and should thus have the required\r performance and security. However, only you should use only a web server (the development\r server is fine) and a database, and just incorporate all concepts using these two servers. Do not\r use other servers.\r Data to be stored for each user:\r ● Name, Phone Number, Email Address.\r Registration and Profile:\r ● A user has to register with at least name and phone number, along with a password, before\r using. He can optionally add an email address.\r ● Only one user can register on the app with a particular phone number.\r ● A user needs to be logged in to do anything; there is no public access to anything.\r ● You can assume that the user’s phone contacts will be automatically imported into the app’s\r database - you don’t need to implement importing the contacts.\r Spam:\r ● A user should be able to mark a number as spam so that other users can identify spammers via\r the global database. Note that the number may or may not belong to any registered user or\r contact - it could be a random number.\r Search:\r ● A user can search for a person by name in the global database. Search results display the name,\r phone number and spam likelihood for each result matching that name completely or partially.\r Results should first show people whose names start with the search query, and then people\r whose names contain but don’t start with the search query.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4",
+    "sequelize-cli": "^6.6.2"
+  }
+}
