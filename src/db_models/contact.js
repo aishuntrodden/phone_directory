@@ -1,3 +1,6 @@
+const { DataTypes } = require('sequelize');
+const db = require('../configuration/postgres_db').sequelize;
+
 const User = require('./user');
 const Contact = db.define('Contact', {
   name: {
