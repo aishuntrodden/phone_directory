@@ -22,11 +22,7 @@ const Contact = db.define('Contact', {
       model: User,
       key: 'id',
     },
-  },
-  isSpam: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: null,
-  },
+  }
 });
 
 Contact.belongsTo(User, { foreignKey: 'userId' });

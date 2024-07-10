@@ -10,6 +10,7 @@ const parserMiddleware = require('./middleware/parser');
 const userRoutes = require('./routes/userRoutes');
 const contactRoutes = require('./routes/contactRoutes');
 const tokenVerification = require("./middleware/authVerify");
+const SpamStatus = require("./db_models/spamStatusModel");
 
 const app = express();
 const port = process.env.SERVER_PORT || 3000;
@@ -23,6 +24,8 @@ db.authenticate()
   .then(async () => {
     await User.sync({ alter: true });
     await Contact.sync({ alter: true });
+    await SpamStatus.sync({ alter: true });
+
   })
   .then(() => {
     console.log("Database connection successful");

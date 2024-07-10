@@ -2,8 +2,9 @@ const Contact = require("../db_models/contactModel.js");
 
 exports.createContact = async (req, res) => {
   try {
-    const { name, phoneNumber, userId,isSpam } = req.body;
-    const newContact = await Contact.create({ name, phoneNumber, userId,isSpam });
+    const { name, phoneNumber } = req.body;
+    let userId = req.userId
+    const newContact = await Contact.create({ name, phoneNumber, userId });
     console.log("Contact created Successfully", newContact);
     res.status(201).json(newContact);
   } catch (err) {
@@ -12,31 +13,12 @@ exports.createContact = async (req, res) => {
   }
 };
 
-exports.setSpam = async (req, res) => {
-  const { phoneNumber, isSpam } = req.body;
-
+exports.getAllContacts = async (req, res) => {
   try {
-    const contact = await Contact.findOne({
-      where: { phoneNumber },
-    });
-
-    if (!contact) {
-      return res.status(401).json({ error: "Contact not found" });
-    }
-    if (isSpam == undefined) {
-      return res
-        .status(500)
-        .json({ error: "Spam status not defined in Input." });
-    }
-    contact.isSpam = isSpam;
-
-    await contact.save();
-
-    return res
-      .status(200)
-      .json({ message: "Contact spam status updated", contact });
+    const contacts = await Contact.findAll({ where: { userId: req.userId } });
+    res.status(200).json(contacts);
   } catch (error) {
-    console.error("Error reporting spam:", error);
-    res.status(500).json({ error: "Server error" });
+    console.error("Error fetching contacts:", error);
+    res.status(500).json({ error: "Failed to fetch contacts" });
   }
 };
