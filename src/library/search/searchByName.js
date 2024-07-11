@@ -96,7 +96,7 @@ async function findContainsMatches(name) {
   }
 }
 
-async function searchByName(name) {
+async function search(name) {
   try {
     const exactMatches = await findExactMatchesByName(name);
     const startingWithMatches = await findStartingWithMatches(name);
@@ -123,5 +123,5 @@ async function searchByName(name) {
 }
 
 module.exports = {
-  searchByName,
+  search
 };

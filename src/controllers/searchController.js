@@ -1,19 +1,30 @@
-const db_queries = require("../library/db_queries");
-const Search = require("../library/search/searchByName");
+const globalSearch = require("../library/search/globalSearch");
+const SearchByName = require("../library/search/searchByName");
+const searchByPhone = require("../library/search/searchByPhone");
 
 exports.globalSearch = async (req, res) => {
   try {
-    const users = await db_queries.findUsersWithSpamDetails();
+    const users = await globalSearch.search();
     res.status(201).json({ message: "All User details", users: users });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-exports.searchByName = async (req, res) => {
+exports.SearchByName = async (req, res) => {
   try {
     const { name } = req.body;
-    const result = await Search.searchByName(name);
+    const result = await SearchByName.search(name);
+    res.status(201).json({ message: "List", list: result });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+exports.searchByPhone = async (req, res) => {
+  try {
+    const { phoneNumber } = req.body;
+    const result = await searchByPhone.search(phoneNumber);
     res.status(201).json({ message: "List", list: result });
   } catch (error) {
     res.status(500).json({ error: error.message });
