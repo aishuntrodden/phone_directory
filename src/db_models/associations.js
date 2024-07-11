@@ -10,7 +10,10 @@ User.hasOne(SpamStatus, {
     foreignKey: 'userId',
     constraints: false, 
   });
-
+  Contact.hasOne(SpamStatus, {
+    foreignKey: 'contactId',
+    constraints: false, 
+  });
   SpamStatus.belongsTo(User, { foreignKey: 'userId', constraints: false }); 
   SpamStatus.belongsTo(Contact, { foreignKey: 'contactId', constraints: false }); 
 }
