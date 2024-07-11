@@ -25,6 +25,6 @@ const Contact = db.define('Contact', {
   }
 });
 
-Contact.belongsTo(User, { foreignKey: 'userId' });
+// Contact.belongsTo(User, { foreignKey: 'userId' });
 
 module.exports = Contact;

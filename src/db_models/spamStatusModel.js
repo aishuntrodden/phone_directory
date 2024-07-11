@@ -38,7 +38,7 @@ const SpamStatus = db.define('SpamStatus', {
   },
 });
 
-SpamStatus.belongsTo(User, { foreignKey: 'userId' });
-SpamStatus.belongsTo(Contact, { foreignKey: 'contactId' });
+// SpamStatus.belongsTo(User, { foreignKey: 'userId' });
+// SpamStatus.belongsTo(Contact, { foreignKey: 'contactId' });
 
 module.exports = SpamStatus;

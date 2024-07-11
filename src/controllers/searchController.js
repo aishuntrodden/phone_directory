@@ -1,41 +1,21 @@
-const User = require('../db_models/userModel');
+const db_queries = require("../library/db_queries");
 
+exports.globalSearch = async (req, res) => {
+  try {
+    const users = await db_queries.findUsersWithSpamDetails();
+    res.status(201).json({ message: "All User details", users: users });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
-const searchByPhoneNumber = async (req, res) => {
-    const { phoneNumber } = req.params;
-  
-    try {
-      // Search registered users by phone number
-      const registeredUser = await User.findOne({
-        where: { phoneNumber },
-        attributes: ['name', 'phoneNumber', 'email']
-      });
-  
-      if (registeredUser) {
-        const result = {
-          name: registeredUser.name,
-          phoneNumber: registeredUser.phoneNumber,
-          spamLikelihood: calculateSpamLikelihood(registeredUser.phoneNumber),
-          email: registeredUser.email
-        };
-        return res.status(200).json(result);
-      }
-  
-      // Search contacts by phone number
-      const contacts = await Contact.findAll({
-        where: { phoneNumber },
-        attributes: ['name', 'phoneNumber']
-      });
-  
-      const searchResults = contacts.map(contact => ({
-        name: contact.name,
-        phoneNumber: contact.phoneNumber,
-        spamLikelihood: calculateSpamLikelihood(contact.phoneNumber)
-      }));
-  
-      res.status(200).json(searchResults);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Server error' });
-    }
-  };
+exports.searchByName = async (req, res) => {
+  try {
+
+    const { name } = req.body;
+    const result = await db_queries.searchUsersByName(name);
+    res.status(201).json({ message: "List", list: result });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

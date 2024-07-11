@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const User = require("../db_models/userModel");
 const db_queries = require("../library/db_queries");
 
 exports.registerUser = async (req, res) => {
@@ -48,18 +47,18 @@ exports.loginUser = async (req, res) => {
   }
 };
 
-exports.searchUserByPhoneNumber = async (req, res) => {
-  const { phoneNumber } = req.body;
-  try {
-    const user = await User.findOne({ where: { phoneNumber } });
+// exports.searchUserByPhoneNumber = async (req, res) => {
+//   const { phoneNumber } = req.body;
+//   try {
+//     const user = await User.findOne({ where: { phoneNumber } });
 
-    if (!user) {
-      return res.status(404).json({ error: "User not found" });
-    }
+//     if (!user) {
+//       return res.status(404).json({ error: "User not found" });
+//     }
 
-    res.status(200).json({ user });
-  } catch (error) {
-    console.error("Error searching user by phone number:", error.message);
-    res.status(500).json({ error: "Search Failed" });
-  }
-};
+//     res.status(200).json({ user });
+//   } catch (error) {
+//     console.error("Error searching user by phone number:", error.message);
+//     res.status(500).json({ error: "Search Failed" });
+//   }
+// };
