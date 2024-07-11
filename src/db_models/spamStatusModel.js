@@ -1,9 +1,9 @@
-const { DataTypes } = require('sequelize');
-const db = require('../configuration/postgres_db').sequelize;
-const User = require('./userModel');
-const Contact = require('./contactModel');
+const { DataTypes } = require("sequelize");
+const db = require("../configuration/postgres_db").sequelize;
+const User = require("./userModel");
+const Contact = require("./contactModel");
 
-const SpamStatus = db.define('SpamStatus', {
+const SpamStatus = db.define("SpamStatus", {
   spam: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
@@ -13,28 +13,28 @@ const SpamStatus = db.define('SpamStatus', {
     allowNull: true,
     references: {
       model: User,
-      key: 'id',
+      key: "id",
     },
-    onUpdate: 'CASCADE',
-    onDelete: 'SET NULL',
+    onUpdate: "CASCADE",
+    onDelete: "SET NULL",
   },
   phoneNumber: {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-        isNumeric: true,
-        len: [10, 10]
-      },
+      isNumeric: true,
+      len: [10, 10]
+    },
   },
   contactId: {
     type: DataTypes.INTEGER,
     allowNull: true,
     references: {
       model: Contact,
-      key: 'id',
+      key: "id",
     },
-    onUpdate: 'CASCADE',
-    onDelete: 'SET NULL',
+    onUpdate: "CASCADE",
+    onDelete: "SET NULL",
   },
 });
 

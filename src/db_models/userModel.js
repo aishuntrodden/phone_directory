@@ -1,8 +1,8 @@
-const { DataTypes } = require('sequelize');
-const db = require('../configuration/postgres_db').sequelize;
-const bcrypt = require('bcryptjs');
+const { DataTypes } = require("sequelize");
+const db = require("../configuration/postgres_db").sequelize;
+const bcrypt = require("bcryptjs");
 
-const User = db.define('User', {
+const User = db.define("User", {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -12,9 +12,9 @@ const User = db.define('User', {
     allowNull: false,
     unique: true,
     validate: {
-        isNumeric: true,
-        len: [10, 10]
-      }
+      isNumeric: true,
+      len: [10, 10]
+    }
   },
   email: {
     type: DataTypes.STRING,
