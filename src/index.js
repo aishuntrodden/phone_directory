@@ -6,9 +6,10 @@ const User = require("./db_models/userModel");
 const Contact = require("./db_models/contactModel");
 // bodyparser from middleware 
 const parserMiddleware = require('./middleware/parser');
-// api endpoint routs import
+// api endpoint routes import
 const userRoutes = require('./routes/userRoutes');
 const contactRoutes = require('./routes/contactRoutes');
+const spamRoutes = require('./routes/spamRouts');
 const tokenVerification = require("./middleware/authVerify");
 const SpamStatus = require("./db_models/spamStatusModel");
 
@@ -19,7 +20,7 @@ app.use(parserMiddleware);
 
 app.use("/user", userRoutes);
 app.use("/contact", tokenVerification, contactRoutes);
-
+app.use("/spam",tokenVerification, spamRoutes)
 db.authenticate()
   .then(async () => {
     await User.sync({ alter: true });
