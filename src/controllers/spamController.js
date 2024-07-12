@@ -1,3 +1,4 @@
+const logger = require("../configuration/loggerConfig");
 const db_queries = require("../library/db_queries");
 
 exports.setSpam = async (req, res) => {
@@ -32,7 +33,7 @@ exports.setSpam = async (req, res) => {
       .status(200)
       .json({ message: "Contact spam status updated", setSpamStatus });
   } catch (error) {
-    console.error("Error reporting spam:", error);
+    logger.error(`url: ${req.url}   error :${error.message}`);
     res.status(500).json({ error: error.message });
   }
 };

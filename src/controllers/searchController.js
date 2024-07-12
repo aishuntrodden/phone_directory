@@ -1,3 +1,4 @@
+const logger = require("../configuration/loggerConfig");
 const globalSearch = require("../library/search/globalSearch");
 const SearchByName = require("../library/search/searchByName");
 const searchByPhone = require("../library/search/searchByPhone");
@@ -7,6 +8,7 @@ exports.globalSearch = async (req, res) => {
     const users = await globalSearch.search();
     res.status(201).json({ message: "All User details", users: users });
   } catch (error) {
+    logger.error(`url: ${req.url}   error:${error.message}`);
     res.status(500).json({ error: error.message });
   }
 };
@@ -17,6 +19,7 @@ exports.SearchByName = async (req, res) => {
     const result = await SearchByName.search(name);
     res.status(201).json({ message: "List", list: result });
   } catch (error) {
+    logger.error(`url: ${req.url}   error:${error.message}`);
     res.status(500).json({ error: error.message });
   }
 };
@@ -27,6 +30,7 @@ exports.searchByPhone = async (req, res) => {
     const result = await searchByPhone.search(phoneNumber);
     res.status(201).json({ message: "List", list: result });
   } catch (error) {
+    logger.error(`url: ${req.url}   error:${error.message}`);
     res.status(500).json({ error: error.message });
   }
 };

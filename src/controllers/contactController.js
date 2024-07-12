@@ -1,4 +1,5 @@
 const Contact = require("../db_models/contactModel.js");
+const logger = require('../configuration/loggerConfig');
 
 exports.createContact = async (req, res) => {
   try {
@@ -8,7 +9,7 @@ exports.createContact = async (req, res) => {
     console.log("Contact created Successfully", newContact);
     res.status(201).json(newContact);
   } catch (err) {
-    console.error(err);
+    logger.error(`url: ${req.url}   error:${error.message}`)
     res.status(500).json({ error: "Server error" });
   }
 };
@@ -18,7 +19,7 @@ exports.getAllContacts = async (req, res) => {
     const contacts = await Contact.findAll({ where: { userId: req.userId } });
     res.status(200).json(contacts);
   } catch (error) {
-    console.error("Error fetching contacts:", error);
+    logger.error(`url: ${req.url}   error:${error.message}`)
     res.status(500).json({ error: "Failed to fetch contacts" });
   }
 };
