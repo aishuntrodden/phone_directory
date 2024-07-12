@@ -43,7 +43,7 @@ exports.loginUser = async (req, res) => {
         expiresIn: process.env.TOKEN_EXPIRE_TIME,
       }
     );
-    res.status(200).json({ token });
+    res.status(201).json({ token });
   } catch (error) {
     logger.error(`url: ${req.url}   error:${error.message}`)
     res.status(500).json({ error: `Login Failed: ${error.message}` });
