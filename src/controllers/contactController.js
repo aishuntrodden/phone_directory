@@ -17,7 +17,7 @@ exports.createContact = async (req, res) => {
 exports.getAllContacts = async (req, res) => {
   try {
     const contacts = await Contact.findAll({ where: { userId: req.userId } });
-    res.status(200).json(contacts);
+    res.status(201).json(contacts);
   } catch (error) {
     logger.error(`url: ${req.url}   error:${error.message}`)
     res.status(500).json({ error: "Failed to fetch contacts" });
