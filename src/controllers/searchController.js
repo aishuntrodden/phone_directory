@@ -5,8 +5,8 @@ const searchByPhone = require("../library/search/searchByPhone");
 
 exports.globalSearch = async (req, res) => {
   try {
-    const users = await globalSearch.search();
-    res.status(201).json({ message: "All User details", users: users });
+    const result = await globalSearch.search();
+    res.status(201).json({ message: "All User details", result: result });
   } catch (error) {
     logger.error(`url: ${req.url}   error:${error.message}`);
     res.status(500).json({ error: error.message });
