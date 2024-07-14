@@ -23,7 +23,7 @@ const SpamStatus = db.define("SpamStatus", {
     allowNull: false,
     validate: {
       isNumeric: true,
-      len: [10, 10]
+      len: [10, 10],
     },
   },
   contactId: {
@@ -37,8 +37,5 @@ const SpamStatus = db.define("SpamStatus", {
     onDelete: "SET NULL",
   },
 });
-
-// SpamStatus.belongsTo(User, { foreignKey: 'userId' });
-// SpamStatus.belongsTo(Contact, { foreignKey: 'contactId' });
 
 module.exports = SpamStatus;

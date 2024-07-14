@@ -14,7 +14,7 @@ function tokenVerification(req, res, next) {
       console.error("Error verifying token:", err);
       return res.status(401).json({ error: "Unauthorized: Invalid token" });
     }
-    req.userId = decoded.userId;
+  req.userId = decoded.userId;
     next();
   });
 }

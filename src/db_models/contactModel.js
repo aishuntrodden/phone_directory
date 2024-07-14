@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize"); 
+const { DataTypes } = require("sequelize");
 const db = require("../configuration/postgres_db").sequelize;
 
 const User = require("./userModel");
@@ -12,7 +12,7 @@ const Contact = db.define("Contact", {
     allowNull: false,
     validate: {
       isNumeric: true,
-      len: [10, 10]
+      len: [10, 10],
     },
   },
   userId: {
@@ -22,9 +22,7 @@ const Contact = db.define("Contact", {
       model: User,
       key: "id",
     },
-  }
+  },
 });
-
-// Contact.belongsTo(User, { foreignKey: 'userId' });
 
 module.exports = Contact;

@@ -5,5 +5,6 @@ const searchController = require("../controllers/searchController");
 router.get("/globalSearch", searchController.globalSearch);
 router.post("/searchByName", searchController.SearchByName);
 router.post("/searchByPhone", searchController.searchByPhone);
+router.post("/searchById", searchController.searchById);
 
 module.exports = router;

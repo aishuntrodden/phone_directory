@@ -1,5 +1,6 @@
 const { Sequelize } = require("sequelize");
 
+// For deployed version use this
 const sequelize = new Sequelize(process.env.DEPLOYED_DATABASE_URL, {
   dialect: "postgres",
   logging: false,
@@ -10,5 +11,13 @@ const sequelize = new Sequelize(process.env.DEPLOYED_DATABASE_URL, {
     },
   },
 });
+
+// For local database use this
+// const sequelize = new Sequelize(process.env.LOCAL_DATABASE_URL, {
+//   dialect: "postgres",
+//   logging: false,
+//   dialectOptions: {
+//   },
+// });
 
 module.exports = {sequelize};
